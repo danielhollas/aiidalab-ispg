@@ -26,6 +26,7 @@ __all__ = [
     "CalcJobOutputFollower",
     "LogOutputWidget",
     "NodeViewWidget",
+    "TrajectoryDataViewer",
 ]
 
 
@@ -263,8 +264,8 @@ class TrajectoryDataViewer(StructureDataViewer):
             self._step_selector.min = 1
             self._step_selector.max = 1
             self._step_selector.disabled = True
-            self._step_selector.layout.visibility = 'hidden'
-            self._energy.layout.visibility = 'hidden'
+            self._step_selector.layout.visibility = "hidden"
+            self._energy.layout.visibility = "hidden"
             return
 
         if isinstance(trajectory, TrajectoryData):
@@ -273,11 +274,11 @@ class TrajectoryDataViewer(StructureDataViewer):
             ]
             if "energies" in trajectory.get_arraynames():
                 self._energies = trajectory.get_array("energies")
-                self._energy.layout.visibility = 'visible'
+                self._energy.layout.visibility = "visible"
                 self._energy.value = f"Energy = {self._energies[0]:.2f} eV"
             else:
                 self._energies = None
-                self._energy.layout.visibility = 'hidden'
+                self._energy.layout.visibility = "hidden"
         else:
             self._structures = [trajectory]
 
@@ -285,9 +286,9 @@ class TrajectoryDataViewer(StructureDataViewer):
         self._step_selector.max = nframes
         if nframes == 1:
             self.structure = self._structures[0]
-            self._step_selector.layout.visibility = 'hidden'
+            self._step_selector.layout.visibility = "hidden"
         else:
-            self._step_selector.layout.visibility = 'visible'
+            self._step_selector.layout.visibility = "visible"
             self._step_selector.disabled = False
             # For some reason, this does not trigger observer
             # if this value was already there, so we update manually
