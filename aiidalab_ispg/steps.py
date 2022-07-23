@@ -139,7 +139,7 @@ class CodeSettings(ipw.VBox):
         )
 
 
-class SubmitOrcaAppWorkChainStep(ipw.VBox, WizardAppWidgetStep):
+class SubmitAtmospecAppWorkChainStep(ipw.VBox, WizardAppWidgetStep):
     """Step for submission of a bands workchain."""
 
     input_structure = Union(
@@ -471,7 +471,7 @@ class SubmitOrcaAppWorkChainStep(ipw.VBox, WizardAppWidgetStep):
         return DEFAULT_PARAMETERS
 
 
-class ViewOrcaAppWorkChainStatusAndResultsStep(ipw.VBox, WizardAppWidgetStep):
+class ViewAtmospecAppWorkChainStatusAndResultsStep(ipw.VBox, WizardAppWidgetStep):
 
     process = traitlets.Instance(ProcessNode, allow_none=True)
 

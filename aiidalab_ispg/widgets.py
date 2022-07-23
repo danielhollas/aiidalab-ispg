@@ -30,6 +30,7 @@ __all__ = [
     "CalcJobOutputFollower",
     "LogOutputWidget",
     "NodeViewWidget",
+    "TrajectoryDataViewer",
 ]
 
 

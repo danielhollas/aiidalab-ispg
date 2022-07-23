@@ -1,11 +1,19 @@
+from aiidalab_ispg.process import WorkChainSelector
+from aiidalab_ispg.widgets import TrajectoryDataViewer
 from aiidalab_ispg.structures import StructureSelectionStep
 from aiidalab_ispg.steps import (
-    SubmitOrcaAppWorkChainStep,
+    SubmitAtmospecAppWorkChainStep,
+    ViewAtmospecAppWorkChainStatusAndResultsStep,
+    ViewSpectrumStep,
 )
 
 __all__ = [
+    "TrajectoryDataViewer",
+    "WorkChainSelector",
     "StructureSelectionStep",
-    "SubmitOrcaAppWorkChainStep",
+    "SubmitAtmospecAppWorkChainStep",
+    "ViewAtmospecAppWorkChainStatusAndResultsStep",
+    "ViewSpectrumStep",
 ]
 
 # WARNING: This needs to be kept in sync with version
