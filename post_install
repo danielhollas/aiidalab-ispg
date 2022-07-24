@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# This script automatically creates required code Nodes in AiiDA database,
+# based on the assumption that the codes are accessible locally.
+
+# If you plan to do remote execution, you need to first create
+# a computer node via `verdi computer setup`,
+# and then change the computer_name variable below accordingly.
+
+# This needs to match the path where you mounted the code! 
+# Perhaps we could autodetermine this via find?
+ORCA_PATH=/opt/orca
+
+function create_orca_code() {
+  computer_name=$1
+  code_name=orca
+  verdi code show ${code_name}@${computer_name} 2>/dev/null || \
+    echo "Creating code node ${code_name}@${computer_name}" && \
+    verdi code setup --non-interactive \
+    --label ${code_name} \
+    --description "${code_name} code mounted via docker volume." \
+    --input-plugin ${code_name}_main \
+    --computer ${computer_name} \
+    --remote-abs-path ${ORCA_PATH}/orca \
+    --prepend-text "export PATH=${ORCA_PATH}:\$PATH"
+}
+
+# Create orca code node on computer localhost,
+# which is created by default in aiidalab Docker image
+computer_name=localhost
+create_orca_code $computer_name
+
+# If we have SLURM, install extra code on localhost configured with slurm
+# This computer node is created in our custom Docker image.
+computer_name=slurm
+verdi computer show $computer_name > /dev/null && \
+  create_orca_code $computer_name
